@@ -2,9 +2,9 @@ class CashRegister
  @@all = []
  attr_accessor :total, :apply_discount, :void_last_transaction
 
- def initialize(discount = 0)
+ def initialize(apply_discount = 0)
    @total = 0
-   @discount = discount
+   @apply_discount = discount
    @cart = []
  end
 
@@ -13,7 +13,7 @@ class CashRegister
  end
 
  def add_item(title, price, quantity = 1)
-   @last_transaction = (quantity*price)
+   @void_last_transaction = (quantity*price)
    @total += (quantity*price)
 
    items = {}
@@ -24,7 +24,7 @@ class CashRegister
   end
 
  def apply_discount
-   if @discount > 0
+   if @apply_discount > 0
    @total -= (@total.to_f*discount.to_f/100)
    "After the discount, the total comes to $#{@total.to_i}."
    else
@@ -43,8 +43,6 @@ class CashRegister
    item_names
  end
 
-  #@cart.map{|i| i[:title]* i[:quantity]}
-  #binding.pry
 
  def void_last_transaction
   @total -= @last_transaction
