@@ -4,25 +4,25 @@ class CashRegister
 
  def initialize(discount = 0)
    @total = 0
-   @discount = discount 
+   @discount = discount
    @cart = []
- end 
- 
- def total 
-   @total 
- end 
- 
+ end
+
+ def total
+   @total
+ end
+
  def add_item(title, price, quantity = 1)
-   @last_transaction = (quantity*price) 
-   @total += (quantity*price) 
-  
+   @last_transaction = (quantity*price)
+   @total += (quantity*price)
+
    items = {}
-   items[:title] = title 
-   items[:price] = price 
+   items[:title] = title
+   items[:price] = price
    items[:quantity] = quantity
-   @cart << items 
-  end 
-    
+   @cart << items
+  end
+
  def apply_discount
    if @discount > 0
    @total -= (@total.to_f*discount.to_f/100)
@@ -30,25 +30,25 @@ class CashRegister
    else
    "There is no discount to apply."
    end
- end 
- 
+ end
+
  def items
    item_names = []
    @cart.each do |item_info|
      #test expects product name * quantity...
-     for qty in 1..item_info[:quantity] 
+     for qty in 1..item_info[:quantity]
        item_names << item_info[:title]
-     end 
-   end 
+     end
+   end
    item_names
- end 
+ end
 
   #@cart.map{|i| i[:title]* i[:quantity]}
-  #binding.pry 
- 
+  #binding.pry
+
  def void_last_transaction
   @total -= @last_transaction
  end
 end
-   
+
 end
