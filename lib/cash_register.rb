@@ -50,4 +50,3 @@ class CashRegister
   @total -= @last_transaction
  end
 end
-
